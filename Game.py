@@ -5,4 +5,5 @@ class Game:
         self.__timestamps = timestamps
 
     def getBoard(self):
+        print("hello")
         return
