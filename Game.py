@@ -1,9 +1,9 @@
 class Game:
-    def __init__(self, number, duration, timestamps):
+    def __init__(self, number):
         self.__number = number
-        self.__duration = duration
-        self.__timestamps = timestamps
+        self.__duration = " "
+        self.__timestamps = " "
 
-    def getBoard(self):
-        print("hello")
+    #returns number of game
+    def getNumber(self):
         return
