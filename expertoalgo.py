@@ -31,11 +31,7 @@ def listremover(number):
 
 
 
-Expertmove1x()
-print(corners)
-print(firstX)
-listremover(firstX)
-print(corners)
+
 # move 2
 
 # X: if o put it in the center, place x in the corner opposite to 1st x
@@ -59,8 +55,7 @@ def Expertmove2x(firstX,firstO):
         secondX = center
     return secondX
 
-Expertmove2x(firstX,random.choice(corners))
-print(secondX)
+
 
 
 # we need a function to make a 3 in a row if possible
@@ -86,7 +81,7 @@ def winthegameX():
 
 # X: connect 3, if possible
 
-winthegameX()
+
 
 # if not, block O from connecting 3
 
@@ -102,7 +97,7 @@ def winthegameO():
 
 
 
-winthegameO()
+
 
 # threaten two connect 3s simultaneously
 # while designing the function, it occured to me that a list of already used spaces could be useful.
@@ -214,6 +209,172 @@ def Expertmove4x(firstX,firstO,secondX,secondO,thirdX,thirdO):
 
 def Expertmove5x():
     anyothermove()
+
+
+
+
+
+# move 1
+
+# if computer is o, take the center, if open. If x takes center, take a corner
+
+def Expertmove1O(firstX):
+    if firstX==center:
+        return random.choice(corners)
+    else:
+        return center
+
+
+# move 2
+
+# O: block X if needed
+
+winthegameX()
+
+# if there are two X on opposite corner with o  in middle, put it on a side
+
+# lets define a list of sets of opposite corners
+
+oppositecorners= [{1,9},{3,7}]
+
+def sidetrickO(firstX,firstO,secondX):
+    if firstO==center and ({firstX,secondX} in oppositecorners):
+        return random.choice(sides)
+
+
+# if 1xcorner,1omiddle, 2x side, where not threatening to win, put o in corner between the 2 x
+
+# we need to define sets where X are in a corner and a side, but not threatening to win
+
+cornersidesituation=[{1,6},{1,8},{3,4},{3,8},{7,2},{7,6},{9,2},{9,4}]
+
+def cornertrickO(firstX,firstO,secondX):
+    if firstO==center and ({firstX,secondX} in cornersidesituation):
+        if {firstX,secondX}=={1,6}:
+            return 3
+        elif {firstX,secondX}=={1,8}:
+            return 7
+        elif {firstX,secondX}=={3,4}:
+            return 1
+        elif {firstX,secondX}=={3,8}:
+            return 9
+        elif {firstX,secondX}=={7,2}:
+            return 1
+        elif {firstX,secondX}=={7,6}:
+            return 9
+        elif {firstX,secondX}=={9,2}:
+            return 3
+        elif {firstX,secondX}=={9,4}:
+            return 7
+
+# if 1st o between 2 xs on sides, put o anywhere
+
+# similarly, we need a list of sets where 2 Xs are on opposite sides
+
+oppositesides=[{2,8},{4,6}]
+
+def funnyline(firstX,firstO,secondX):
+    if firstO==center and ({firstX,secondX} in oppositesides):
+        return random.choice(allspaces)
+
+# if 2xs on adjacent sides, put o in either corner, where it touches x
+
+# again, we need a new list of 2xs on adjacent sides
+
+adjacentsides=[{2,4},{2,6},{4,8},{6,8}]
+
+def boringsideline(firstX,firstO,secondX):
+    if firstO==center and ({firstX,secondX} in adjacentsides):
+        if {firstX, secondX} == {2, 6}:
+            return random.choice([1,3,9])
+        elif {firstX, secondX} == {2, 4}:
+            return random.choice([1,3,7])
+        elif {firstX, secondX} == {8, 6}:
+            return random.choice([7,3,9])
+        elif {firstX, secondX} == {4, 8}:
+            return random.choice([1,7,9])
+
+# if x1 center, x2 corner, put o in corner
+
+def centerXresponse(firstX,secondX):
+    if firstX==center and secondX in originalcorners:
+        return random.choice(corners)
+
+
+def Expertmove2O(firstX,firstO,secondX):
+    winthegameX()
+    if winthegameX() not in allspaces:
+        sidetrickO(firstX,firstO,secondX)
+    elif (winthegameX() and sidetrickO(firstX,firstO,secondX)) not in allspaces:
+        cornertrickO(firstX,firstO,secondX)
+    elif (winthegameX() and sidetrickO(firstX,firstO,secondX) and cornertrickO(firstX,firstO,secondX)) not in allspaces:
+        funnyline(firstX,firstO,secondX)
+    elif (winthegameX() and sidetrickO(firstX,firstO,secondX) and cornertrickO(firstX,firstO,secondX) and
+          funnyline(firstX,firstO,secondX)) not in allspaces:
+        boringsideline(firstX,firstO,secondX)
+    elif (winthegameX() and sidetrickO(firstX,firstO,secondX) and cornertrickO(firstX,firstO,secondX) and
+          funnyline(firstX,firstO,secondX) and boringsideline(firstX,firstO,secondX)) not in allspaces:
+        centerXresponse(firstX,secondX)
+
+
+
+# move 3
+
+
+#O: connect 3, if possible
+# we already have this function
+
+
+# elif block X from connecting 3
+# we already have this function
+
+# threaten 2 connect 3s simultaneously
+# we need to slightly modify the function for X, but we essentially have this one already
+
+def threatentowinO():
+    for element in allspaces:
+        if {firstO,element} in possible3inrows and {secondO,element} in possible3inrows:
+            if isnotblocked({firstO,element}) and isnotblocked({secondO,element}):
+                return element
+
+# any other space
+
+
+
+
+
+def Expertmove3O(firstX,firstO,secondX,secondO,thirdX):
+    winthegameO()
+    if winthegameO() not in allspaces:
+        winthegameX()
+    elif (winthegameX() and winthegameO()) not in allspaces:
+        threatentowinO()
+    else:
+        anyothermove()
+
+
+
+# move 4
+
+#O: connect 3
+# we already have this function
+
+# block X from connect 3
+# we also already have this function
+
+# any other space
+
+def Expertmove4O():
+    winthegameO2()
+    if winthegameO2() not in allspaces:
+        winthegameX2()
+    else:
+        anyothermove()
+
+
+
+
+
 
 
 
