@@ -18,7 +18,7 @@ def main():
     board1 = Board()
     currentPlayer, nextPlayer = playerO, playerX
 
-    while board1.isWinner() != True and board1.isDraw != False:
+    while board1.isWinner() != True and board1.isDraw != True:
         board1.getBoard()
         move = currentPlayer.makeMove()
 
