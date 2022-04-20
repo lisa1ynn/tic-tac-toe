@@ -14,20 +14,24 @@ def main():
     playerX.setName()
     print(f"Hello {playerX.getName()}, you will play second.")
 
-    #Game start
+    #Initialize new board object and assign each player a position (current or next)
     board1 = Board()
     currentPlayer, nextPlayer = playerO, playerX
 
+    #executes a new move as long as there is no winner or draw case
     while board1.isWinner() != True and board1.isDraw != False:
         board1.getBoard()
         move = currentPlayer.makeMove()
 
+        #checks if move is valid. As long as it is not valid, ask for another move.
         while board1.isValidMove(move) != True:
             move = currentPlayer.makeMove()
 
+        #update board by exchanging the number with the player sign and switch turns
         board1.updateBoard(currentPlayer.getSymbol(), move)
         nextPlayer, currentPlayer = currentPlayer, nextPlayer
 
+    #if the game ends through a win or draw, the board is printed once more and the winner/ draw message is printed
     board1.getBoard()
     if board1.isWinner():
         print(f"Congratulations, {nextPlayer.getName()}, you won!")
