@@ -34,7 +34,7 @@ class Board:
             if self.__spaces[i] == self.__spaces[i + 3] == self.__spaces[i + 6]:
                 return True
 
-        if self.__spaces[1] == self.__spaces[4] == self.__spaces[8] or self.__spaces[2] == self.__spaces[4] == self.__spaces[6]:
+        if self.__spaces[0] == self.__spaces[4] == self.__spaces[8] or self.__spaces[2] == self.__spaces[4] == self.__spaces[6]:
             return True
 
     #Checks if the game is a draw
