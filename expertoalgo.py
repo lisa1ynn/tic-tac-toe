@@ -178,6 +178,7 @@ def winthegameX2():
                 return element
 
 
+
 # now we need to modify the previous function to block O from making 3 in a row
 thirdO=""
 
