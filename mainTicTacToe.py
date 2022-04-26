@@ -19,7 +19,7 @@ def main():
     currentPlayer, nextPlayer = playerO, playerX
 
     #executes a new move as long as there is no winner or draw case
-    while board1.isWinner() != True and board1.isDraw != False:
+    while board1.isWinner() != True and board1.isDraw != True:
         board1.getBoard()
         move = currentPlayer.makeMove()
 
