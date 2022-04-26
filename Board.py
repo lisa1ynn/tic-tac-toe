@@ -3,6 +3,7 @@
 class Board:
     def __init__(self):
         self.__spaces = ["1","2","3","4","5","6","7","8","9"]
+        self.__counter = 0
 
 
     #prints playing board in console 
@@ -19,6 +20,8 @@ class Board:
     def isValidMove(self, move):
         if move in range(1,10) and str(move) in self.__spaces:
             return True
+        else:
+            print("This is not a valid move. Try again!")
 
     #Updates board after move has been done and checked
     def updateBoard(self, symbol, move):
@@ -39,13 +42,14 @@ class Board:
 
     #Checks if the game is a draw
     def isDraw(self):
-        for i in self.__spaces:
-            if i in ["1","2","3","4","5","6","7","8","9"]:
-                return False
+        self.__counter += 1
+        if self.__counter < 9:
+            return True
 
     #Asks the players if they want to play again
     def setRestart(self):
         return
+
 
 
 
