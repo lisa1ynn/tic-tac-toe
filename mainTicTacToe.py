@@ -1,41 +1,67 @@
-from Board import Board
-from Game import Game
 from Player import Player
+from Game import Game
+from datetime import datetime
 
 
 def main():
 
-    #Greeting and player creation
-    playerO = Player(symbol = "O", name = "Player O")
-    playerO.setName()
-    print(f"Hello {playerO.getName()}, you will play first.")
+    #as long as otherGame varibale is True, the game will continue and the player will be asked whom to play with
+    otherGame = True
+    while otherGame == True:
 
-    playerX = Player(symbol = "X", name = "Player X")
-    playerX.setName()
-    print(f"Hello {playerX.getName()}, you will play second.")
+        #asks user which mode they want to play and saves it in a variable
+        mode = input("Whom do you want to play against? (other player = 1, easy computer = 2, expert computer = 3): ")
 
-    #Initialize new board object and assign each player a position (current or next)
-    board1 = Board()
-    currentPlayer, nextPlayer = playerO, playerX
+        #is started if a player wants to play against another player
+        if mode == "1":
 
-    #executes a new move as long as there is no winner or draw case
-    while board1.isWinner() != True and board1.isDraw != True:
-        board1.getBoard()
-        move = currentPlayer.makeMove()
+            #creates a new game object
+            game = Game()
 
-        #checks if move is valid. As long as it is not valid, ask for another move.
-        while board1.isValidMove(move) != True:
-            move = currentPlayer.makeMove()
+            #greets players and creates them
+            playerX = Player(symbol="X", name="Player X")
+            playerX.setName()
+            print(f"Hello {playerX.getName()}, you will play first.")
 
-        #update board by exchanging the number with the player sign and switch turns
-        board1.updateBoard(currentPlayer.getSymbol(), move)
-        nextPlayer, currentPlayer = currentPlayer, nextPlayer
+            playerO = Player(symbol="O", name="Player O")
+            playerO.setName()
+            print(f"Hello {playerO.getName()}, you will play second.")
 
-    #if the game ends through a win or draw, the board is printed once more and the winner/ draw message is printed
-    board1.getBoard()
-    if board1.isWinner():
-        print(f"Congratulations, {nextPlayer.getName()}, you won!")
-    else:
-        print("This is a draw!")
+            #saves start time and date of players
+            startDateTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            game.addPlayTime(playerX, playerO, startDateTime)
+
+            # as long as otherPlayerGame variable is True,
+            # the game with the same player will continue
+            otherPlayerGame = True
+            while otherPlayerGame == True:
+
+                #starts game
+                game.playAgainstPlayer(playerX, playerO)
+
+                # changes signs and turns of players so
+                # the player who started last time comes second now
+                playerX, playerO = playerO, playerX
+                playerX.changeSymbol()
+                playerO.changeSymbol()
+
+
+                #Asks player if they want to play another round with this player or not
+                #Repreats game if they said "yes", and ends it if they said "no"
+                playAgain = input("Do you want to play another round together? (yes/ no): ")
+                if playAgain != "yes":
+                    otherPlayerGame = False
+
+        else:
+            #placeholder for easy and hard computer
+            print("This mode is not available right now.")
+
+        #as long as otherGame varibale is True, the game will repeat
+        #if they answer no, print "Game over! and end game"
+        repeatGame = input("Do you want to play again with another player? (yes/ no): ")
+        if repeatGame != "yes":
+            otherGame = False
+            print("Game over!")
+
 
 main()

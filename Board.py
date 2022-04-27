@@ -37,18 +37,18 @@ class Board:
             if self.__spaces[i] == self.__spaces[i + 3] == self.__spaces[i + 6]:
                 return True
 
-        if self.__spaces[0] == self.__spaces[4] == self.__spaces[8] or self.__spaces[2] == self.__spaces[4] == self.__spaces[6]:
+        if self.__spaces[0] == self.__spaces[4] == self.__spaces[8] or \
+                self.__spaces[2] == self.__spaces[4] == self.__spaces[6]:
             return True
 
     #Checks if the game is a draw
     def isDraw(self):
         self.__counter += 1
-        if self.__counter < 9:
+        if self.__counter > 9:
             return True
 
-    #Asks the players if they want to play again
-    def setRestart(self):
-        return
+
+
 
 
 

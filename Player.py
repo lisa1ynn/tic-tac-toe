@@ -1,10 +1,8 @@
+# creates Player class, initiates an object of class, and assigns states
 class Player:
     def __init__(self, symbol, name):
         self.__name = name
         self.__symbol = symbol
-        self.__moves = []
-        self.__time = " "
-        self.__highscore = " "
 
     #Returns player name
     def getName(self):
@@ -27,16 +25,13 @@ class Player:
     def getSymbol(self):
         return self.__symbol
 
-    #returns high score of player
-    def getHighscore(self):
-        return
+    #changes the symbol
+    def changeSymbol(self):
+        if self.__symbol == "X":
+            self.__symbol = "O"
+        else:
+            self.__symbol = "X"
 
-    #asks the players if they want to swith signs after starting a new game
-    def switchSigns(self):
-        return
 
-    #saves the move of the player to their dashboard
-    def saveMove(self):
-        return
 
 
