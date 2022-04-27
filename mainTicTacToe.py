@@ -45,12 +45,12 @@ def main():
                 playerX.changeSymbol()
                 playerO.changeSymbol()
 
-
                 #Asks player if they want to play another round with this player or not
                 #Repreats game if they said "yes", and ends it if they said "no"
                 playAgain = input("Do you want to play another round together? (yes/ no): ")
                 if playAgain != "yes":
                     otherPlayerGame = False
+
 
         else:
             #placeholder for easy and hard computer

@@ -16,6 +16,7 @@ class Board:
                 f"|  {self.__spaces[6]}  |  {self.__spaces[7]}  |  {self.__spaces[8]}  |\n"
                 "-------------------")
 
+
     #Checks if move is valid
     def isValidMove(self, move):
         if move in range(1,10) and str(move) in self.__spaces:
@@ -23,9 +24,11 @@ class Board:
         else:
             print("This is not a valid move. Try again!")
 
+
     #Updates board after move has been done and checked
     def updateBoard(self, symbol, move):
         self.__spaces[move - 1] = symbol
+
 
     #Checks if one of the winner cases took place
     def isWinner(self):
@@ -41,18 +44,9 @@ class Board:
                 self.__spaces[2] == self.__spaces[4] == self.__spaces[6]:
             return True
 
+
     #Checks if the game is a draw
     def isDraw(self):
         self.__counter += 1
         if self.__counter > 9:
             return True
-
-
-
-
-
-
-
-
-
-

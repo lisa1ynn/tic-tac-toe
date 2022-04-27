@@ -65,18 +65,23 @@ High score: 0
 Times played: 
     27/04/2022 20:29:42
 
-Player: lisa
-High score: 0
-Times played: 
-    27/04/2022 20:53:13
-
-Player: salima
+Player: Salima
 High score: 1
 Times played: 
     27/04/2022 20:53:13
 
-Player: nour
+Player: Nour
 High score: 0
 Times played: 
     27/04/2022 20:56:56
+
+Player: Nala
+High score: 0
+Times played: 
+    28/04/2022 00:16:45
+
+Player: Thomas
+High score: 1
+Times played: 
+    28/04/2022 00:16:45
 

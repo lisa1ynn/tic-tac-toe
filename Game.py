@@ -3,6 +3,7 @@ from vegetable import veggies
 import time
 import random
 
+
 # creates Game class, initiates an object of class, and assigns states
 class Game:
     def __init__(self):
@@ -32,7 +33,6 @@ class Game:
             # update board by exchanging the number with the player sign and switch turns
             board.updateBoard(currentPlayer.getSymbol(), move)
             nextPlayer, currentPlayer = currentPlayer, nextPlayer
-
 
         # if the game ends through a win or draw, the board is printed once more and the winner/ draw message is printed
         # if there is a winner, add new high score of player to their name in file
@@ -75,12 +75,6 @@ class Game:
             # adds one to current high score and adds new string back top list
             highScore = str(int(playerList[highScoreIndex][12:-1]) + 1)
             playerList[highScoreIndex] = f"High score: {highScore}\n"
-        else:
-            # adds name of new player with high score of 1 to file
-            playerList.append(f"Player: {nextPlayer.getName()}\n")
-            playerList.append("High score: 1\n")
-            playerList.append("\n")
-            highScore = "1"
 
         # opens Player_script.txt file with write mode and joins the playerList to one string
         playerFile = open("Player_script.txt", "w")
