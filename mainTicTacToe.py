@@ -2,7 +2,7 @@ from Player import Player
 from Game import Game
 from datetime import datetime
 
-
+# main function that brings everything together
 def main():
 
     #as long as otherGame varibale is True, the game will continue and the player will be asked whom to play with

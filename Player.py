@@ -16,7 +16,7 @@ class Player:
     #asks the player to make a move and returns it
     def makeMove(self):
         try:
-            move = int(input(f"{self.__name}, is your next move? (1-9): "))
+            move = int(input(f"{self.__name}, what is your next move? (1-9): "))
             return move
         except ValueError:
             return

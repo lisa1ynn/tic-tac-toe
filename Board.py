@@ -1,5 +1,5 @@
 
-
+# creates Board class, initiates an object of class, and assigns states
 class Board:
     def __init__(self):
         self.__spaces = ["1","2","3","4","5","6","7","8","9"]
