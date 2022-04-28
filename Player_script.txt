@@ -33,6 +33,7 @@ Times played:
 Player: Lola
 High score: 2
 Times played:
+    28/04/2022 15:26:13
     27/04/2022 20:49:29
     27/04/2022 20:23:51
     27/04/2022 20:20:47
@@ -78,10 +79,37 @@ Times played:
 Player: Nala
 High score: 0
 Times played: 
+    28/04/2022 15:36:50
     28/04/2022 00:16:45
 
 Player: Thomas
 High score: 1
 Times played: 
+    28/04/2022 15:36:50
     28/04/2022 00:16:45
+
+Player: Alex
+High score: 1
+Times played: 
+    28/04/2022 08:58:12
+
+Player: Diego
+High score: 0
+Times played: 
+    28/04/2022 11:46:59
+
+Player: Emmet
+High score: 1
+Times played: 
+    28/04/2022 15:26:13
+
+Player: Sana
+High score: 0
+Times played: 
+    28/04/2022 16:16:15
+
+Player: Rick
+High score: 1
+Times played: 
+    28/04/2022 16:16:15
 

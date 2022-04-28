@@ -1,3 +1,4 @@
+# list containing vegetables and vegetable dishes
 veggies = [
     "Asparagus",
     "Avocado",

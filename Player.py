@@ -5,18 +5,18 @@ class Player:
         self.__symbol = symbol
 
 
-    #Returns player name
+    # returns player name
     def getName(self):
         return self.__name
 
 
-    #changes player name
+    # changes player name
     def setName(self):
         name = input(f"{self.__name}, what is your name?: ")
         self.__name = name
 
 
-    #asks the player to make a move and returns it
+    # asks the player to make a move and returns it
     def makeMove(self):
         try:
             move = int(input(f"{self.__name}, what is your next move? (1-9): "))
@@ -25,12 +25,12 @@ class Player:
             return
 
 
-    #returns the symbol
+    # returns the symbol
     def getSymbol(self):
         return self.__symbol
 
 
-    #changes the symbol
+    # changes the symbol
     def changeSymbol(self):
         if self.__symbol == "X":
             self.__symbol = "O"

@@ -39,15 +39,15 @@ class Game:
         board.getBoard()
         if board.isWinner():
             print(f"Congratulations, {nextPlayer.getName()}, you won!")
-            print(f"{currentPlayer.getName()}, you little {veggies[random.randint(0, 56)]}! YOU LOST!!!")
+            print(f"{currentPlayer.getName()}, you little {veggies[random.randint(0, 55)]}! YOU LOST!!!")
 
             # updates high score of winner
             self.updateHighScore(nextPlayer)
 
         else:
             # if game is a draw
-            print(f"{currentPlayer.getName()}, you little {veggies[random.randint(0, 56)]}, "
-                  f"{nextPlayer.getName()}, you little {veggies[random.randint(0, 56)]}, "
+            print(f"{currentPlayer.getName()}, you little {veggies[random.randint(0, 55)]}, "
+                  f"{nextPlayer.getName()}, you little {veggies[random.randint(0, 55)]}, "
                   f"NO ONE WON...this is a DRAW!!!")
 
         # calculates duration of game and prints it
@@ -56,8 +56,9 @@ class Game:
               f"and {round(self.__duration%60)} second(s).")
 
 
-    #updates high score in player script file
+    # updates high score in player script file
     def updateHighScore(self, nextPlayer):
+
         # open or create playerFile with names high scores, and play times
         playerFile = open("Player_script.txt")
 
@@ -65,16 +66,13 @@ class Game:
         playerList = playerFile.readlines()
         playerFile.close()
 
-        # increases high score number of winner by one if name is already in file
-        if f"Player: {nextPlayer.getName()}\n" in playerList:
+        # finds index of list item with winner name and gets high score index
+        # through adding 1
+        highScoreIndex = int(playerList.index(f"Player: {nextPlayer.getName()}\n")) + 1
 
-            # finds index of list item with winner name and gets high score index
-            # through adding 1
-            highScoreIndex = int(playerList.index(f"Player: {nextPlayer.getName()}\n")) + 1
-
-            # adds one to current high score and adds new string back top list
-            highScore = str(int(playerList[highScoreIndex][12:-1]) + 1)
-            playerList[highScoreIndex] = f"High score: {highScore}\n"
+        # adds one to current high score and adds new string back top list
+        highScore = str(int(playerList[highScoreIndex][12:-1]) + 1)
+        playerList[highScoreIndex] = f"High score: {highScore}\n"
 
         # opens Player_script.txt file with write mode and joins the playerList to one string
         playerFile = open("Player_script.txt", "w")
@@ -104,7 +102,7 @@ class Game:
                 # finds index of list item with player name and adds time played
                 timePlayedIndex = int(playerList.index(f"Player: {player.getName()}\n")) + 3
 
-                #adds start date and time of current game to Player_script.txt file
+                # adds start date and time of current game to Player_script.txt file
                 playerList.insert(timePlayedIndex, f"    {startDateTime}\n")
 
             else:
