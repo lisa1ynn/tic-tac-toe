@@ -1,6 +1,8 @@
 from Player import Player
 from Game import Game
 from datetime import datetime
+from ComputerBeginner import BeginnerGame
+from ComputerExpert import ExpertGame
 
 # main function that brings everything together
 def main():
@@ -51,10 +53,91 @@ def main():
                 if playAgain != "yes":
                     otherPlayerGame = False
 
+        # started when player wants to play against a beginner computer
+        elif mode == "2":
 
-        else:
-            # placeholder for easy and hard computer
-            print("This mode is not available right now.")
+            # creates a new BeginnerGame object
+            beginnergame=BeginnerGame()
+
+            # greets the player, creates them, and updates their name to the player's name
+            playerX = Player(symbol="X", name="Player X")
+            playerX.setName()
+            print(f"Hello {playerX.getName()}, you will play first.")
+            computer = Player(symbol="O", name="Computer Simulated Beginner")
+
+            # saves start time and date of players
+            startDateTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            beginnergame.addPlayTime(playerX, computer, startDateTime)
+
+            # set a counter to alternate X and O
+            counter = 2
+            # as long as otherPlayerGame variable is True,
+            # the game with the same player will continue
+            otherPlayerGame = True
+            while otherPlayerGame == True:
+
+
+                # set and increment a counter, so that the game alternates between player playing as X and as O
+
+
+                if counter%2==0:
+                    # starts game
+                    beginnergame.playAgainstBeginnerX(playerX, computer)
+                else:
+                    beginnergame.playAgainstBeginnerO(playerX, computer)
+
+
+
+                # increment the counter
+                counter+=1
+
+                # asks player if they want to play another round with this player or not
+                # repeats game if they said "yes", and ends it if they said "no"
+                playAgain = input("Do you want to play another round together? (yes/ no): ")
+                if playAgain != "yes":
+                    otherPlayerGame = False
+
+
+        # started when player wants to play against a beginner computer
+        elif mode == "3":
+
+            # creates a new BeginnerGame object
+            expertgame = ExpertGame()
+
+            # greets the player, creates them, and updates their name to the player's name
+            playerX = Player(symbol="X", name="Player X")
+            playerX.setName()
+            print(f"Hello {playerX.getName()}, you will play first.")
+            computer = Player(symbol="O", name="Computer Simulated Beginner")
+
+            # saves start time and date of players
+            startDateTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            expertgame.addPlayTime(playerX, computer, startDateTime)
+
+            # set a counter to alternate X and O
+            counter = 2
+            # as long as otherPlayerGame variable is True,
+            # the game with the same player will continue
+            otherPlayerGame = True
+            while otherPlayerGame == True:
+
+                # set and increment a counter, so that the game alternates between player playing as X and as O
+
+                if counter % 2 == 0:
+                    # starts game
+                    expertgame.playAgainstExpertX(playerX, computer)
+                else:
+                    expertgame.playAgainstExpertO(playerX, computer)
+
+                # increment the counter
+                counter += 1
+
+                # asks player if they want to play another round with this player or not
+                # repeats game if they said "yes", and ends it if they said "no"
+                playAgain = input("Do you want to play another round together? (yes/ no): ")
+                if playAgain != "yes":
+                    otherPlayerGame = False
+
 
         # as long as otherGame varibale is True, the game will repeat
         # if they answer no, print "Game over! and end game"
